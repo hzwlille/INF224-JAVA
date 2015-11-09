@@ -1,9 +1,14 @@
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Panel;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -26,6 +31,7 @@ public class Fenetre extends JFrame {
 	JTextArea myText;
 	JMenuBar myMenuBar;
 	JMenu myMenu1;
+	JMenu myMenu2;
 	//JToolBar myToolBar;
 
 
@@ -40,12 +46,18 @@ public class Fenetre extends JFrame {
 		Action2 action2=new Action2("new line y");
 		Action3 action3=new Action3("Exit");
 		
+		Action4 action4=new Action4("Find");
+		Action5 action5=new Action5("Affich");
+		Action6 action6=new Action6("Play");
+		
 		button1=new JButton();
 		button2=new JButton();
 		button3=new JButton();
 		myMenu1=new JMenu("File");
+		myMenu2=new JMenu("Multimedia");
 		myMenuBar=new JMenuBar();
 		myMenuBar.add(myMenu1);
+		myMenuBar.add(myMenu2);
 		
 
 		
@@ -77,6 +89,9 @@ public class Fenetre extends JFrame {
 		myMenu1.add(action2);
 		myMenu1.add(action3);
 
+		myMenu2.add(action4);
+		myMenu2.add(action5);
+		myMenu2.add(action6);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Bib Bip"); 
 		pack(); 												// calcule la disposition spatiale 
@@ -129,7 +144,43 @@ public class Fenetre extends JFrame {
 
 
 	}
-	
+	private class Action4 extends AbstractAction{
+
+		public Action4(String text){
+			super(text);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.print("Good\n");
+		}
+
+
+	}private class Action5 extends AbstractAction{
+
+		public Action5(String text){
+			super(text);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+	}private class Action6 extends AbstractAction{
+
+		public Action6(String text){
+			super(text);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+	}
 	
 
 

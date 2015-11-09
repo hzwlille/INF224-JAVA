@@ -17,9 +17,8 @@ public class main {
 	} 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Fenetre a=new Fenetre();
-		a.setVisible(true);
-		a.setSize(300, 300);
+		Client.main(args);
+		
 	}
 
 }
