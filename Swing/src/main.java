@@ -20,21 +20,11 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Client client = null;
-		String host = DEFAULT_HOST;
-	    int port = DEFAULT_PORT;   
-	    
-	    try {
-	      client = new Client(host, port);
-	    }
-	    catch (Exception e) {
-	      System.err.println("Client: Couldn't connect to "+host+":"+port);
-	      System.exit(1);
-	    }
-	    System.out.println("Client connected to "+host+":"+port);
+		client=Client.makeClient(DEFAULT_HOST, DEFAULT_PORT);
 		Fenetre a=new Fenetre(client);
 		a.setVisible(true);
 		a.setSize(300, 300);  
-		client.newClient(client);	
+		Client.startClient(client);	
 	}
 
 }

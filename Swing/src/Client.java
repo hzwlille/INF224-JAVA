@@ -14,6 +14,29 @@ public class Client
   private BufferedReader input;
   private BufferedWriter output;
 
+  
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  
+  ///
+  ///Créer un nouveau client sans démarrer la connexion
+  public static Client makeClient(String DEFAULT_HOST, int DEFAULT_PORT){
+	  	Client client = null;
+		String host = DEFAULT_HOST;
+	    int port = DEFAULT_PORT;   
+	    try {
+	      client = new Client(host, port);
+	    }
+	    catch (Exception e) {
+	      System.err.println("Client: Couldn't connect to "+host+":"+port);
+	      System.exit(1);
+	    }
+	    System.out.println("Client connected to "+host+":"+port);
+		return client;
+  }
+  
+  
+  
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   ///
@@ -21,7 +44,7 @@ public class Client
   /// recupere sa reponse et l'affiche sur le Terminal.
   /// Noter que le programme bloque si le serveur ne repond pas.
   ///
-  public static void newClient(Client client) {
+  public static void startClient(Client client) {
 
     // pour lire depuis la console
     BufferedReader cin = new BufferedReader(new InputStreamReader(System.in));
@@ -101,6 +124,7 @@ public class Client
 	  //Envoyer la requete au serveur par clique des boutons
 	  return this.send(request);
   }
+
 }
 
 
