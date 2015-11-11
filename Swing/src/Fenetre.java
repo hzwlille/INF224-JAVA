@@ -32,12 +32,14 @@ public class Fenetre extends JFrame {
 	JMenuBar myMenuBar;
 	JMenu myMenu1;
 	JMenu myMenu2;
+	Client m_client;
 	//JToolBar myToolBar;
 
 
 
-	public Fenetre(){
+	public Fenetre(Client client){
 		//Déclaration des éléments dans la fenêtre principale
+		m_client=client;
 		myText=new JTextArea();
 		myText.setColumns(25);
 		myText.setRows(15);
@@ -126,7 +128,6 @@ public class Fenetre extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			myText.append("++++++++++++++++++++\n");
-
 		}
 
 
@@ -152,7 +153,7 @@ public class Fenetre extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.print("Good\n");
+			m_client.boutonSend("Find");
 		}
 
 
@@ -164,7 +165,7 @@ public class Fenetre extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			m_client.boutonSend("Affiche");
 		}
 
 
@@ -176,7 +177,7 @@ public class Fenetre extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			m_client.boutonSend("Play");
 		}
 
 
