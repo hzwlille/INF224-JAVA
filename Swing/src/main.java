@@ -12,12 +12,27 @@ public class main {
 	static final int DEFAULT_PORT = 3331;
 	class Ecoute implements ActionListener 
 	{ 
-	 public void actionPerformed(ActionEvent e) { 
-	 System.out.println("Done!"); 
-	 this.notify(); // ne compile pas ! 
-	 } 
+		public void actionPerformed(ActionEvent e) { 
+			System.out.println("Done!"); 
+			this.notify(); // ne compile pas ! 
+		} 
 	} 
 	public static void main(String[] args) {
+
+		//Trying
+//		JFrame like=new JFrame();
+//		like.setSize(500, 500);
+//		JTabbedPane myTab=new JTabbedPane();
+//		JPanel panel1 = new JPanel();
+//		myTab.addTab("Good", panel1);
+//		like.add(myTab);
+//		JPanel panel2 = new JPanel();
+//		myTab.addTab("Good", panel2);
+//		like.add(myTab);
+//		like.setVisible(true);
+		
+
+		////////////////////////////////////////
 		// TODO Auto-generated method stub
 		Client client = null;
 		client=Client.makeClient(DEFAULT_HOST, DEFAULT_PORT);
@@ -25,6 +40,8 @@ public class main {
 		a.setVisible(true);
 		a.setSize(300, 300);  
 		Client.startClient(client);	
+
+
 	}
 
 }

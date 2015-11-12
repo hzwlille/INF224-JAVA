@@ -16,8 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 
@@ -32,6 +34,7 @@ public class Fenetre extends JFrame {
 	JMenuBar myMenuBar;
 	JMenu myMenu1;
 	JMenu myMenu2;
+	JMenu myMenu3;
 	Client m_client;
 	//JToolBar myToolBar;
 
@@ -44,22 +47,26 @@ public class Fenetre extends JFrame {
 		myText.setColumns(25);
 		myText.setRows(15);
 
-		Action1 action1=new Action1("new line x");
-		Action2 action2=new Action2("new line y");
+		Action1 action1=new Action1("Ouvrir une nouvelle base de multimédias");
+		Action2 action2=new Action2("Sauvegarder la base courante");
 		Action3 action3=new Action3("Exit");
 		
 		Action4 action4=new Action4("Find");
 		Action5 action5=new Action5("Affich");
 		Action6 action6=new Action6("Play");
 		
+		Action7 action7=new Action7("Help");
+		
 		button1=new JButton();
 		button2=new JButton();
 		button3=new JButton();
 		myMenu1=new JMenu("File");
 		myMenu2=new JMenu("Multimedia");
+		myMenu3=new JMenu("Help");
 		myMenuBar=new JMenuBar();
 		myMenuBar.add(myMenu1);
 		myMenuBar.add(myMenu2);
+		myMenuBar.add(myMenu3);
 		
 
 		
@@ -94,10 +101,15 @@ public class Fenetre extends JFrame {
 		myMenu2.add(action4);
 		myMenu2.add(action5);
 		myMenu2.add(action6);
+		
+		myMenu3.add(action7);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Bib Bip"); 
 		pack(); 												// calcule la disposition spatiale 
 		setVisible(true); 
+		
+		
+	
 
 	}
 
@@ -178,6 +190,22 @@ public class Fenetre extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			m_client.boutonSend("Play");
+		}
+
+
+	}
+	
+	private class Action7 extends AbstractAction{
+
+		public Action7(String text){
+			super(text);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String message= "Cette telecommande est developpee par Zhongwei HU, Telecom Paristech, 2015 Copyright";
+			String message1="good";
+			JOptionPane.showMessageDialog(new JFrame(),message);
 		}
 
 
