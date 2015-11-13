@@ -8,8 +8,7 @@ public class main {
 	/**
 	 * @param args
 	 */
-	static final String DEFAULT_HOST = "localhost";
-	static final int DEFAULT_PORT = 3331;
+
 	class Ecoute implements ActionListener 
 	{ 
 		public void actionPerformed(ActionEvent e) { 
@@ -35,7 +34,7 @@ public class main {
 		////////////////////////////////////////
 		// TODO Auto-generated method stub
 		Client client = null;
-		client=Client.makeClient(DEFAULT_HOST, DEFAULT_PORT);
+		client=Client.makeClient();
 		Fenetre a=new Fenetre(client);
 		a.setVisible(true);
 		a.setSize(300, 300);  

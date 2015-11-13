@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -22,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.text.JTextComponent;
 
 
 public class Fenetre extends JFrame {
@@ -47,6 +50,9 @@ public class Fenetre extends JFrame {
 		myText.setColumns(25);
 		myText.setRows(15);
 
+		Action1_1 action1_1=new Action1_1("Find");
+		Action1_2 action1_2=new Action1_2("Play");
+		
 		Action1 action1=new Action1("Ouvrir une nouvelle base de multimédias");
 		Action2 action2=new Action2("Sauvegarder la base courante");
 		Action3 action3=new Action3("Exit");
@@ -90,8 +96,8 @@ public class Fenetre extends JFrame {
 		//this.add(myToolBar);
 		
 		//Ajouter des actions pour les boutons et menus
-		button1.setAction(action1);
-		button2.setAction(action2);
+		button1.setAction(action4);
+		button2.setAction(action5);
 		button3.setAction(action3);
 		
 		myMenu1.add(action1);
@@ -117,6 +123,36 @@ public class Fenetre extends JFrame {
 	
 	
 	//Les actions à effectuer
+	private class Action1_1 extends AbstractAction{
+
+		public Action1_1(String text){
+			super(text);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			myText.append("*******************\n");
+
+		}
+
+
+	}
+	private class Action1_2 extends AbstractAction{
+
+		public Action1_2(String text){
+			super(text);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			myText.append("*******************\n");
+
+		}
+
+
+	}
+	
+	
 	private class Action1 extends AbstractAction{
 
 		public Action1(String text){
@@ -165,19 +201,26 @@ public class Fenetre extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			m_client.boutonSend("Find");
+			String message="Chercher un objet";
+			String getInput=JOptionPane.showInputDialog(message, "Film1");
+			String response=m_client.boutonSend("find "+getInput);
+			myText.append(response+"\n");
 		}
 
 
 	}private class Action5 extends AbstractAction{
 
 		public Action5(String text){
+			
 			super(text);
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			m_client.boutonSend("Affiche");
+			String message="Afficher les infos d'un objet";
+			String getInput=JOptionPane.showInputDialog(message, "Film1");
+			String response=m_client.boutonSend("affiche "+getInput);
+			myText.append(response+"\n");
 		}
 
 
@@ -189,7 +232,10 @@ public class Fenetre extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			m_client.boutonSend("Play");
+			String message="Jouer un objet";
+			String getInput=JOptionPane.showInputDialog(message, "Film1");
+			String response=m_client.boutonSend("play "+getInput);
+			myText.append(response+"\n");
 		}
 
 

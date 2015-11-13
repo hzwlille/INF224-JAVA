@@ -3,13 +3,19 @@
 // eric lecolinet - telecom paristech - 2015
 //
 
+import java.awt.event.InputMethodEvent;
 import java.io.*;
 import java.net.*;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Client
 {
   private static final long serialVersionUID = 1L;
-
+  static final String DEFAULT_HOST = "localhost";
+  static final int DEFAULT_PORT = 3331;
   private Socket sock;
   private BufferedReader input;
   private BufferedWriter output;
@@ -20,22 +26,32 @@ public class Client
   
   ///
   ///Créer un nouveau client sans démarrer la connexion
-  public static Client makeClient(String DEFAULT_HOST, int DEFAULT_PORT){
+  public static Client makeClient(){
 	  	Client client = null;
 		String host = DEFAULT_HOST;
 	    int port = DEFAULT_PORT;   
+	    
+	    //ConnexionWindows newConnexion=new ConnexionWindows();
+	  
+	    
 	    try {
-	      client = new Client(host, port);
+	    	client = new Client(host, port);
 	    }
 	    catch (Exception e) {
-	      System.err.println("Client: Couldn't connect to "+host+":"+port);
-	      System.exit(1);
+	    	String message = null;
+	    	String message1=null;
+	    	JFrame dialogue=new JFrame();
+	    	//dialogue.addInputMethodListener(new InputMethodEvent(source, id, caret, visiblePosition));
+	    	//JOptionPane.showInputDialog(dialogue, message,  "3");
+	    	//JOptionPane.showInputDialog(dialogue, message1,  "33");
+	    	JOptionPane.showMessageDialog(new JFrame(),"Client: Couldn't connect to "+host+":"+port);
+	    	System.exit(1);
 	    }
-	    System.out.println("Client connected to "+host+":"+port);
-		return client;
+	    JOptionPane.showMessageDialog(new JFrame(),"Client connected to "+host+":"+port);
+	    return client;
   }
-  
-  
+
+
   
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
