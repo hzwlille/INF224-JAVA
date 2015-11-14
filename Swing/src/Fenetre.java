@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -14,6 +15,7 @@ import java.io.Writer;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -162,7 +164,11 @@ public class Fenetre extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			myText.append("*******************\n");
-
+			JFileChooser newFile=new JFileChooser();
+			newFile.showOpenDialog(new JFrame());
+			File newSelected=newFile.getSelectedFile();
+			String response=m_client.send("load "+newSelected.getAbsolutePath());
+			myText.append(response);
 		}
 
 
@@ -176,6 +182,15 @@ public class Fenetre extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			myText.append("++++++++++++++++++++\n");
+			JFileChooser newFile=new JFileChooser();
+			newFile.showSaveDialog(new JFrame());
+			File newSelected=newFile.getSelectedFile();
+			String saveFile=newSelected.getName();
+			System.out.print(newSelected);
+			
+			
+			String response=m_client.send("save "+newSelected);
+			myText.append(response);
 		}
 
 
@@ -204,6 +219,8 @@ public class Fenetre extends JFrame {
 			String message="Chercher un objet";
 			String getInput=JOptionPane.showInputDialog(message, "Film1");
 			String response=m_client.boutonSend("find "+getInput);
+			
+			myText.setText("");
 			myText.append(response+"\n");
 		}
 

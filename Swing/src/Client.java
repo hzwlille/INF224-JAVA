@@ -129,12 +129,13 @@ public class Client
     // Recuperer le resultat envoye par le serveur
     try {
     	String newLine;
-    	String readOfLines = null;
+    	
+    	String readOfLines="";
     	boolean stop=false;
     	while(!stop){
     		newLine=input.readLine();
     		readOfLines+=newLine+"\n";
-    		if(newLine=="End_affiche"){
+    		if(newLine.equals("End_affiche")){
     			stop=true;
     		}
     	}
