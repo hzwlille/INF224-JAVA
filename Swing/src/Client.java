@@ -128,7 +128,17 @@ public class Client
     
     // Recuperer le resultat envoye par le serveur
     try {
-      return input.readLine();
+    	String newLine;
+    	String readOfLines = null;
+    	boolean stop=false;
+    	while(!stop){
+    		newLine=input.readLine();
+    		readOfLines+=newLine+"\n";
+    		if(newLine=="End_affiche"){
+    			stop=true;
+    		}
+    	}
+      return readOfLines;
     }
     catch (java.io.IOException e) {
       System.err.println("Client: Couldn't receive message: " + e);
