@@ -35,6 +35,8 @@ public class Fenetre extends JFrame {
 	JButton button1;
 	JButton button2;
 	JButton button3;
+	JButton button4;
+	JButton button5;
 	JTextArea myText;
 	JMenuBar myMenuBar;
 	JMenu myMenu1;
@@ -47,13 +49,13 @@ public class Fenetre extends JFrame {
 
 	public Fenetre(Client client){
 		//Déclaration des éléments dans la fenêtre principale
+		
+		this.setLocationRelativeTo(null);
 		m_client=client;
 		myText=new JTextArea();
 		myText.setColumns(25);
 		myText.setRows(15);
-
-		Action1_1 action1_1=new Action1_1("Find");
-		Action1_2 action1_2=new Action1_2("Play");
+		myText.setLineWrap(true);
 		
 		Action1 action1=new Action1("Ouvrir une nouvelle base de multimédias");
 		Action2 action2=new Action2("Sauvegarder la base courante");
@@ -64,10 +66,13 @@ public class Fenetre extends JFrame {
 		Action6 action6=new Action6("Play");
 		
 		Action7 action7=new Action7("Help");
-		
+		Action8 action8=new Action8("Synthese");
 		button1=new JButton();
 		button2=new JButton();
 		button3=new JButton();
+		button4=new JButton();
+		button5=new JButton();
+		
 		myMenu1=new JMenu("File");
 		myMenu2=new JMenu("Multimedia");
 		myMenu3=new JMenu("Help");
@@ -78,21 +83,18 @@ public class Fenetre extends JFrame {
 		
 
 		
-		//myToolBar=new JToolBar("Tool Bar");
-		//myToolBar.add(button1);
-		//Les conteneurs
-
-		JPanel panelText=new JPanel();
-		JScrollPane scrollPaneText=new JScrollPane(panelText);
+		JScrollPane scrollPaneText=new JScrollPane(myText,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		JPanel panelButton=new JPanel();
-		panelText.add(myText);
+		//panelText.add(myText);
+		panelButton.add(button5);
 		panelButton.add(button1);
 		panelButton.add(button2);
+		panelButton.add(button4);
 		panelButton.add(button3);
 
 
 		//Positionnement des conteneurs
-		this.add(panelText, BorderLayout.CENTER);
+		this.add(scrollPaneText, BorderLayout.CENTER);
 		this.add(panelButton,BorderLayout.SOUTH);
 		this.setJMenuBar(myMenuBar);
 		//this.add(myToolBar);
@@ -100,7 +102,9 @@ public class Fenetre extends JFrame {
 		//Ajouter des actions pour les boutons et menus
 		button1.setAction(action4);
 		button2.setAction(action5);
+		button4.setAction(action6);
 		button3.setAction(action3);
+		button5.setAction(action8);
 		
 		myMenu1.add(action1);
 		myMenu1.add(action2);
@@ -112,7 +116,7 @@ public class Fenetre extends JFrame {
 		
 		myMenu3.add(action7);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Bib Bip"); 
+		setTitle("Télécomande"); 
 		pack(); 												// calcule la disposition spatiale 
 		setVisible(true); 
 		
@@ -123,38 +127,6 @@ public class Fenetre extends JFrame {
 
 	
 	
-	
-	//Les actions à effectuer
-	private class Action1_1 extends AbstractAction{
-
-		public Action1_1(String text){
-			super(text);
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			myText.append("*******************\n");
-
-		}
-
-
-	}
-	private class Action1_2 extends AbstractAction{
-
-		public Action1_2(String text){
-			super(text);
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			myText.append("*******************\n");
-
-		}
-
-
-	}
-	
-	
 	private class Action1 extends AbstractAction{
 
 		public Action1(String text){
@@ -163,7 +135,6 @@ public class Fenetre extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			myText.append("*******************\n");
 			JFileChooser newFile=new JFileChooser();
 			newFile.showOpenDialog(new JFrame());
 			File newSelected=newFile.getSelectedFile();
@@ -181,7 +152,6 @@ public class Fenetre extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			myText.append("++++++++++++++++++++\n");
 			JFileChooser newFile=new JFileChooser();
 			newFile.showSaveDialog(new JFrame());
 			File newSelected=newFile.getSelectedFile();
@@ -208,6 +178,7 @@ public class Fenetre extends JFrame {
 
 
 	}
+	//Find
 	private class Action4 extends AbstractAction{
 
 		public Action4(String text){
@@ -225,7 +196,9 @@ public class Fenetre extends JFrame {
 		}
 
 
-	}private class Action5 extends AbstractAction{
+	}
+	//Affiche
+	private class Action5 extends AbstractAction{
 
 		public Action5(String text){
 			
@@ -237,11 +210,15 @@ public class Fenetre extends JFrame {
 			String message="Afficher les infos d'un objet";
 			String getInput=JOptionPane.showInputDialog(message, "Film1");
 			String response=m_client.boutonSend("affiche "+getInput);
+			
+			myText.setText("");
 			myText.append(response+"\n");
 		}
 
 
-	}private class Action6 extends AbstractAction{
+	}
+	//Play
+	private class Action6 extends AbstractAction{
 
 		public Action6(String text){
 			super(text);
@@ -252,6 +229,8 @@ public class Fenetre extends JFrame {
 			String message="Jouer un objet";
 			String getInput=JOptionPane.showInputDialog(message, "Film1");
 			String response=m_client.boutonSend("play "+getInput);
+			
+			myText.setText("");
 			myText.append(response+"\n");
 		}
 
@@ -267,13 +246,28 @@ public class Fenetre extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			String message= "Cette telecommande est developpee par Zhongwei HU, Telecom Paristech, 2015 Copyright";
-			String message1="good";
+			
 			JOptionPane.showMessageDialog(new JFrame(),message);
 		}
 
 
 	}
-	
+	private class Action8 extends AbstractAction{
+
+		public Action8(String text){
+			super(text);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String response=m_client.boutonSend("synthese");
+			
+			myText.setText("");
+			myText.append(response);
+		}
+
+
+	}
 
 
 }

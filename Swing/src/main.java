@@ -18,26 +18,11 @@ public class main {
 	} 
 	public static void main(String[] args) {
 
-		//Trying
-//		JFrame like=new JFrame();
-//		like.setSize(500, 500);
-//		JTabbedPane myTab=new JTabbedPane();
-//		JPanel panel1 = new JPanel();
-//		myTab.addTab("Good", panel1);
-//		like.add(myTab);
-//		JPanel panel2 = new JPanel();
-//		myTab.addTab("Good", panel2);
-//		like.add(myTab);
-//		like.setVisible(true);
-		
-
-		////////////////////////////////////////
-		// TODO Auto-generated method stub
 		Client client = null;
 		client=Client.makeClient();
 		Fenetre a=new Fenetre(client);
 		a.setVisible(true);
-		a.setSize(300, 300);  
+		a.setMinimumSize(a.getSize());
 		Client.startClient(client);	
 
 
